@@ -1,7 +1,11 @@
 charset [![Build Status](https://secure.travis-ci.org/fengmk2/charset.png)](http://travis-ci.org/fengmk2/charset)
 =======
 
+![logo](https://raw.github.com/fengmk2/charset/master/logo.png)
+
 Get the content charset from header and html content-type.
+
+jscoverage: [100%](http://fengmk2.github.com/coverage/charset.html)
 
 ## Install
 
