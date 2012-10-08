@@ -22,11 +22,12 @@ var http = require('http');
 http.get('http://nodejs.org', function (res) {
   res.on('data', function (chunk) {
     console.log(charset(res.headers, chunk));
+    res.destroy();
   });
 });
 ```
 
-Stdout will should log: `utf-8` .
+Stdout will should log: `utf8` .
 
 ## License 
 
