@@ -34,8 +34,12 @@ module.exports = function charset(headers, data) {
     contentType = data.slice(0, end).toString();
     matchs = CHARTSET_RE.exec(contentType);
   }
+  var cs = null;
   if (matchs) {
-    return matchs[1].toLowerCase();
+    cs = matchs[1].toLowerCase();
+    if (cs === 'utf-8') {
+      cs = 'utf8';
+    }
   }
-  return null;
+  return cs;
 };

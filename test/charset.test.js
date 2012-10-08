@@ -25,6 +25,9 @@ describe('charset.test.js', function () {
       'content-type': 'text/html;charset=UTF8'
     }, new Buffer('')).should.equal('utf8');
     charset({
+      'content-type': 'text/html;charset=UTF-8'
+    }, new Buffer('')).should.equal('utf8');
+    charset({
       'content-type': 'text/html;charset=gb2312'
     }, new Buffer('')).should.equal('gb2312');
   });
@@ -32,7 +35,7 @@ describe('charset.test.js', function () {
   it('should get charset from body', function () {
     charset({}, new Buffer('<meta http-equiv="Content-Type" content="text/html; charset=gBk"/>')).should.equal('gbk');
     charset({}, new Buffer('<meta charset=UTF8>')).should.equal('utf8');
-    charset({}, testContent).should.equal('utf-8');
+    charset({}, testContent).should.equal('utf8');
   });
 
   it('should get null when charset not word, number and -', function () {
