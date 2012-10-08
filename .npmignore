@@ -1,0 +1,4 @@
+test/
+lib-cov/
+Makefile
+.travis.yml
