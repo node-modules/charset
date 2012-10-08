@@ -1,4 +1,4 @@
-charset
+charset [![Build Status](https://secure.travis-ci.org/fengmk2/charset.png)](http://travis-ci.org/fengmk2/charset)
 =======
 
 Get the content charset from header and html content-type.
