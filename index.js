@@ -1,1 +1,1 @@
-module.exports = process.env.CHARSET_COV ? require('./lib-cov/charset') : require('./lib/charset');
+module.exports = require('./lib/charset');

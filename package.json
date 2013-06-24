@@ -3,14 +3,17 @@
   "version": "0.0.1",
   "description": "Get the content charset from header and html content-type.",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "test": "make test"
+    "test": "make test-all",
+    "blanket": { "pattern": "charset/lib" },
+    "travis-cov": { "threshold": 100 }
   },
   "devDependencies": {
     "should": "*",
+    "blanket": "*",
+    "travis-cov": "*",
+    "coveralls": "*",
+    "mocha-lcov-reporter": "*",
     "mocha": "*"
   },
   "repository": {
