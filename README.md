@@ -1,6 +1,8 @@
 charset [![Build Status](https://secure.travis-ci.org/fengmk2/charset.png)](http://travis-ci.org/fengmk2/charset) [![Coverage Status](https://coveralls.io/repos/fengmk2/charset/badge.png)](https://coveralls.io/r/fengmk2/charset)
 =======
 
+[![NPM](https://nodei.co/npm/charset.png?downloads=true&stars=true)](https://nodei.co/npm/charset)
+
 ![logo](https://raw.github.com/fengmk2/charset/master/logo.png)
 
 Get the content charset from header and html content-type.
@@ -27,7 +29,7 @@ http.get('http://nodejs.org', function (res) {
 
 Stdout will should log: `utf8` .
 
-## License 
+## License
 
 (The MIT License)
 
