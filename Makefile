@@ -7,23 +7,26 @@ install:
 	@npm install --registry=http://registry.cnpmjs.org --cache=${HOME}/.npm/.cache/cnpm
 
 test: install
-	@NODE_ENV=test ./node_modules/mocha/bin/mocha \
+	@NODE_ENV=test ./node_modules/.bin/mocha \
 		--reporter $(REPORTER) \
 		--timeout $(TIMEOUT) \
 		$(MOCHA_OPTS) \
 		$(TESTS)
 
-test-cov:
-	@rm -f coverage.html
-	@$(MAKE) test MOCHA_OPTS='--require blanket' REPORTER=html-cov > coverage.html
-	@$(MAKE) test MOCHA_OPTS='--require blanket' REPORTER=travis-cov
-	@ls -lh coverage.html
+test-cov: install
+	@$(MAKE) test MOCHA_OPTS='--require blanket' REPORTER=html-cov | ./node_modules/.bin/cov
 
-test-coveralls:
-	@$(MAKE) test
+test-coveralls: test
 	@echo TRAVIS_JOB_ID $(TRAVIS_JOB_ID)
 	@$(MAKE) test MOCHA_OPTS='--require blanket' REPORTER=mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
 
 test-all: test test-cov
 
-.PHONY: install test test-cov test-all test-coveralls
+autod: install
+	@./node_modules/.bin/autod -w
+	@$(MAKE) install
+
+contributors: install
+	@./node_modules/.bin/contributors -f plain -o AUTHORS
+
+.PHONY: test

@@ -30,6 +30,9 @@ describe('charset.test.js', function () {
     charset({
       'content-type': 'text/html;charset=gb2312'
     }, new Buffer('')).should.equal('gb2312');
+    charset({
+      'Content-Type': 'text/html;Charset=UTF-8'
+    }).should.equal('utf8');
   });
 
   it('should get charset from body', function () {
