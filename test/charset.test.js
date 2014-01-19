@@ -38,6 +38,18 @@ describe('charset.test.js', function () {
     charset({}, testContent).should.equal('utf8');
   });
 
+  it('should get charset from xml header', function () {
+    charset({}, new Buffer('<?xml version="1.0" encoding="utf-8"?>')).should.equal('utf8');
+  });
+
+  it('should get charset with white space chars around "="', function () {
+    charset({}, new Buffer('<?xml version="1.0" encoding =  "utf-8"?>')).should.equal('utf8');
+  });
+
+  it('should get charset with white space chars around charset', function () {
+    charset({}, new Buffer('<?xml version="1.0" encoding=" utf-8 "?>')).should.equal('utf8');
+  });
+
   it('should get null when charset not word, number and -', function () {
     should.not.exist(charset({
       'content-type': 'text/html;charset=中文编码'
