@@ -1,4 +1,4 @@
-charset [![Build Status](https://secure.travis-ci.org/fengmk2/charset.png)](http://travis-ci.org/fengmk2/charset) [![Coverage Status](https://coveralls.io/repos/fengmk2/charset/badge.png)](https://coveralls.io/r/fengmk2/charset)
+charset [![Build Status](https://secure.travis-ci.org/fengmk2/charset.png)](http://travis-ci.org/fengmk2/charset) [![Coverage Status](https://coveralls.io/repos/fengmk2/charset/badge.png)](https://coveralls.io/r/fengmk2/charset) [![Dependency Status](https://gemnasium.com/fengmk2/charset.png)](https://gemnasium.com/fengmk2/charset)
 =======
 
 [![NPM](https://nodei.co/npm/charset.png?downloads=true&stars=true)](https://nodei.co/npm/charset)
@@ -28,6 +28,21 @@ http.get('http://nodejs.org', function (res) {
 ```
 
 Stdout will should log: `utf8` .
+
+## Contributors
+
+```bash
+$ git summary
+
+ project  : charset
+ repo age : 1 year, 3 months
+ active   : 5 days
+ commits  : 14
+ files    : 15
+ authors  :
+    12  fengmk2                 85.7%
+     2  Oleg Slobodskoi         14.3%
+```
 
 ## License
 

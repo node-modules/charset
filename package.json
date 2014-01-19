@@ -29,7 +29,10 @@
   "keywords": [
     "charset",
     "content-type",
-    "ContentType"
+    "ContentType",
+    "Content-Type",
+    "xml",
+    "encoding"
   ],
   "author": "fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)",
   "license": "MIT"
