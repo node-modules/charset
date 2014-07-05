@@ -1,4 +1,10 @@
 
+0.1.0 / 2014-07-05
+==================
+
+ * support `charset(content-type-string)`
+ * update AUTHORS with new version of contributors
+
 0.0.2 / 2014-01-19 
 ==================
 
