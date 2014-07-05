@@ -4,7 +4,7 @@ TIMEOUT = 10000
 MOCHA_OPTS =
 
 install:
-	@npm install --registry=http://registry.cnpmjs.org --cache=${HOME}/.npm/.cache/cnpm
+	@npm install --registry=https://registry.npm.taobao.org
 
 test: install
 	@NODE_ENV=test ./node_modules/.bin/mocha \
@@ -13,17 +13,17 @@ test: install
 		$(MOCHA_OPTS) \
 		$(TESTS)
 
-test-cov: install
+test-cov cov: install
 	@$(MAKE) test MOCHA_OPTS='--require blanket' REPORTER=html-cov | ./node_modules/.bin/cov
 
 test-coveralls: test
 	@echo TRAVIS_JOB_ID $(TRAVIS_JOB_ID)
-	@$(MAKE) test MOCHA_OPTS='--require blanket' REPORTER=mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
+	@$(MAKE) test MOCHA_OPTS='--require blanket' REPORTER=mocha-lcov-reporter | ./node_modules/.bin/coveralls
 
 test-all: test test-cov
 
 autod: install
-	@./node_modules/.bin/autod -w
+	@./node_modules/.bin/autod -w --prefix "~"
 	@$(MAKE) install
 
 contributors: install

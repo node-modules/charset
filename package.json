@@ -10,7 +10,9 @@
     "blanket": { "pattern": "charset/lib" },
     "travis-cov": { "threshold": 100 }
   },
-  "dependencies": {},
+  "dependencies": {
+
+  },
   "devDependencies": {
     "autod": "*",
     "blanket": "*",
@@ -19,12 +21,12 @@
     "coveralls": "*",
     "mocha": "*",
     "mocha-lcov-reporter": "*",
-    "should": "3.0.1"
+    "should": "~4.0.4"
   },
-  "homepage": "https://github.com/fengmk2/charset",
+  "homepage": "https://github.com/node-modules/charset",
   "repository": {
     "type": "git",
-    "url": "git://github.com/fengmk2/charset.git"
+    "url": "git://github.com/node-modules/charset.git"
   },
   "keywords": [
     "charset",

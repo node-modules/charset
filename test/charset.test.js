@@ -35,10 +35,25 @@ describe('charset.test.js', function () {
     }).should.equal('utf8');
   });
 
+  it('should get charset from res', function () {
+    var res = {
+      headers: {
+        'content-type': 'text/html;charset=gb2312'
+      }
+    };
+    charset(res).should.equal('gb2312');
+  });
+
+  it('should get charset from Content-Type string', function () {
+    charset('text/html;charset=gb2312').should.equal('gb2312');
+  });
+
   it('should get charset from body', function () {
     charset({}, new Buffer('<meta http-equiv="Content-Type" content="text/html; charset=gBk"/>')).should.equal('gbk');
     charset({}, new Buffer('<meta charset=UTF8>')).should.equal('utf8');
     charset({}, testContent).should.equal('utf8');
+    // work for string body
+    charset(null, testContent.toString()).should.equal('utf8');
   });
 
   it('should get charset from xml header', function () {
@@ -47,6 +62,7 @@ describe('charset.test.js', function () {
 
   it('should get charset with white space chars around "="', function () {
     charset({}, new Buffer('<?xml version="1.0" encoding =  "utf-8"?>')).should.equal('utf8');
+    charset({}, new Buffer('<?xml version="1.0" encoding =  "utf-8"?>').toString()).should.equal('utf8');
   });
 
   it('should get charset with white space chars around charset', function () {
