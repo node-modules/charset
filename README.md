@@ -68,16 +68,19 @@ You can combine with [jschardet] to help you detect the finally charset.
 This example codes come from [stackoverflow#12326688](http://stackoverflow.com/a/18712021/2496088):
 
 ```js
-var charset = require('charset');
-var jschardet = require('jschardet');
+var request = require('request'),
+    charset = require('charset'),
+    jschardet = require('jschardet');
 
-request('http://www.example.com', function (err, res, body) {
-  if (!err) {
+request({
+  url: 'http://www.example.com',
+  encoding: null
+}, function (err, res, body) {
+  if (err) {
     throw err;
   }
-
   enc = charset(res.headers, body);
-  enc = enc or jschardet.detect(body).encoding.toLowerCase();
+  enc = enc || jschardet.detect(body).encoding.toLowerCase();
   console.log(enc);
 });
 ```
