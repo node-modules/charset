@@ -1,84 +1,75 @@
-/*!
- * charset - test/charset.test.js
- * Copyright(c) 2012 fengmk2 <fengmk2@gmail.com>
- * MIT Licensed
- */
+'use strict';
 
-"use strict";
+const assert = require('assert');
+const fs = require('fs');
+const charset = require('../');
 
-/**
- * Module dependencies.
- */
+const testContent = fs.readFileSync(__dirname + '/test.txt');
+const testContent2 = fs.readFileSync(__dirname + '/test2.txt');
 
-var charset = require('../');
-var should = require('should');
-var fs = require('fs');
-var testContent = fs.readFileSync(__dirname + '/test.txt');
-var testContent2 = fs.readFileSync(__dirname + '/test2.txt');
-
-describe('charset.test.js', function () {
-  it('should get charset from headers', function () {
-    charset({
-      'content-type': 'text/html;charset=gBk'
-    }, new Buffer('')).should.equal('gbk');
-    charset({
-      'content-type': 'text/html;charset=UTF8'
-    }, new Buffer('')).should.equal('utf8');
-    charset({
-      'content-type': 'text/html;charset=UTF-8'
-    }, new Buffer('')).should.equal('utf8');
-    charset({
-      'content-type': 'text/html;charset=gb2312'
-    }, new Buffer('')).should.equal('gb2312');
-    charset({
-      'Content-Type': 'text/html;Charset=UTF-8'
-    }).should.equal('utf8');
+describe('charset.test.js', function() {
+  it('should get charset from headers', function() {
+    assert(charset({
+      'content-type': 'text/html;charset=gBk',
+    }, new Buffer('')) === 'gbk');
+    assert(charset({
+      'content-type': 'text/html;charset=UTF8',
+    }, new Buffer('')) === 'utf8');
+    assert(charset({
+      'content-type': 'text/html;charset=UTF-8',
+    }, new Buffer('')) === 'utf8');
+    assert(charset({
+      'content-type': 'text/html;charset=gb2312',
+    }, new Buffer('')) === 'gb2312');
+    assert(charset({
+      'Content-Type': 'text/html;Charset=UTF-8',
+    }) === 'utf8');
   });
 
-  it('should get charset from res', function () {
-    var res = {
+  it('should get charset from res', function() {
+    const res = {
       headers: {
-        'content-type': 'text/html;charset=gb2312'
-      }
+        'content-type': 'text/html;charset=gb2312',
+      },
     };
-    charset(res).should.equal('gb2312');
+    assert(charset(res) === 'gb2312');
   });
 
-  it('should get charset from Content-Type string', function () {
-    charset('text/html;charset=gb2312').should.equal('gb2312');
+  it('should get charset from Content-Type string', function() {
+    assert(charset('text/html;charset=gb2312') === 'gb2312');
   });
 
-  it('should get charset from body', function () {
-    charset({}, new Buffer('<meta http-equiv="Content-Type" content="text/html; charset=gBk"/>')).should.equal('gbk');
-    charset({}, new Buffer('<meta charset=UTF8>')).should.equal('utf8');
-    charset({}, testContent).should.equal('utf8');
+  it('should get charset from body', function() {
+    assert(charset({}, new Buffer('<meta http-equiv="Content-Type" content="text/html; charset=gBk"/>')) === 'gbk');
+    assert(charset({}, new Buffer('<meta charset=UTF8>')) === 'utf8');
+    assert(charset({}, testContent) === 'utf8');
     // work for string body
-    charset(null, testContent.toString()).should.equal('utf8');
+    assert(charset(null, testContent.toString()) === 'utf8');
   });
 
-  it('should get charset from xml header', function () {
-    charset({}, new Buffer('<?xml version="1.0" encoding="utf-8"?>')).should.equal('utf8');
+  it('should get charset from xml header', function() {
+    assert(charset({}, new Buffer('<?xml version="1.0" encoding="utf-8"?>')) === 'utf8');
   });
 
-  it('should get charset with white space chars around "="', function () {
-    charset({}, new Buffer('<?xml version="1.0" encoding =  "utf-8"?>')).should.equal('utf8');
-    charset({}, new Buffer('<?xml version="1.0" encoding =  "utf-8"?>').toString()).should.equal('utf8');
+  it('should get charset with white space chars around "="', function() {
+    assert(charset({}, new Buffer('<?xml version="1.0" encoding =  "utf-8"?>')) === 'utf8');
+    assert(charset({}, new Buffer('<?xml version="1.0" encoding =  "utf-8"?>').toString()) === 'utf8');
   });
 
-  it('should get charset with white space chars around charset', function () {
-    charset({}, new Buffer('<?xml version="1.0" encoding=" utf-8 "?>')).should.equal('utf8');
+  it('should get charset with white space chars around charset', function() {
+    assert(charset({}, new Buffer('<?xml version="1.0" encoding=" utf-8 "?>')) === 'utf8');
   });
 
-  it('should get null when charset not word, number and -', function () {
-    should.not.exist(charset({
-      'content-type': 'text/html;charset=中文编码'
+  it('should get null when charset not word, number and -', function() {
+    assert(!charset({
+      'content-type': 'text/html;charset=中文编码',
     }, new Buffer('')));
-    should.not.exist(charset({
-      'content-type': 'text/html;charset=|||'
+    assert(!charset({
+      'content-type': 'text/html;charset=|||',
     }, new Buffer('')));
   });
 
-  it('should get null when charset not in top 500 bytes data', function () {
-    should.not.exist(charset({}, testContent2));
+  it('should get null when charset not in top 500 bytes data', function() {
+    assert(!charset({}, testContent2));
   });
 });

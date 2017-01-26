@@ -1,27 +1,20 @@
 charset
 =======
 
-
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
-[![Test coverage][coveralls-image]][coveralls-url]
-[![Gittip][gittip-image]][gittip-url]
+[![Test coverage][codecov-image]][codecov-url]
 [![David deps][david-image]][david-url]
-[![node version][node-image]][node-url]
 [![npm download][download-image]][download-url]
 
 [npm-image]: https://img.shields.io/npm/v/charset.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/charset
 [travis-image]: https://img.shields.io/travis/node-modules/charset.svg?style=flat-square
 [travis-url]: https://travis-ci.org/node-modules/charset
-[coveralls-image]: https://img.shields.io/coveralls/node-modules/charset.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/node-modules/charset?branch=master
-[gittip-image]: https://img.shields.io/gittip/fengmk2.svg?style=flat-square
-[gittip-url]: https://www.gittip.com/fengmk2/
+[codecov-image]: https://codecov.io/gh/node-modules/charset/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/node-modules/charset
 [david-image]: https://img.shields.io/david/node-modules/charset.svg?style=flat-square
 [david-url]: https://david-dm.org/node-modules/charset
-[node-image]: https://img.shields.io/badge/node.js-%3E=_0.10-green.svg?style=flat-square
-[node-url]: http://nodejs.org/download/
 [download-image]: https://img.shields.io/npm/dm/charset.svg?style=flat-square
 [download-url]: https://npmjs.org/package/charset
 
@@ -68,9 +61,9 @@ You can combine with [jschardet] to help you detect the finally charset.
 This example codes come from [stackoverflow#12326688](http://stackoverflow.com/a/18712021/2496088):
 
 ```js
-var request = require('request'),
-    charset = require('charset'),
-    jschardet = require('jschardet');
+var request = require('request');
+var charset = require('charset');
+var jschardet = require('jschardet');
 
 request({
   url: 'http://www.example.com',
@@ -87,7 +80,6 @@ request({
 
 ## License
 
-MIT
-
+[MIT](LICENSE.txt)
 
 [jschardet]: https://github.com/aadsm/jschardet
